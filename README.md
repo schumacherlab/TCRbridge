@@ -5,7 +5,7 @@ TCRbridge predicts TCR-pMHC reactivity from AlphaFold3 output.
 
 ## Installation
 
-### Conda from yaml
+### Setting up conda from yml
 1. Clone the repo:
    ```sh
    git clone https://github.com/schumacherlab/TCRbridge.git
@@ -29,7 +29,7 @@ Follow instructions from https://github.com/google-deepmind/alphafold3 for local
 ### AlphaBridge
 TCRbridge builds upon AlphaBridge (commit 3be1a44). To setup AlphaBridge:
 
-1. Clone TCRbridge
+1. Clone AlphaBridge
 ```sh
 cd TCRbridge
 git clone https://github.com/PDB-REDO/AlphaBridge.git
@@ -66,23 +66,26 @@ Calculating the TCRbridge score from AlphaFold3 output can be done on any machin
    Option 2: Using local AlphaFold3 installation
    ```sh
    # Adapt paths in scripts/predict_structure_with_af3.sh to match your installation
-   sbatch scripts/predict_structure_with_af3.sh af3_job_requests/af3_job_request.json /your/output/path/
+   sbatch scripts/predict_structure_with_af3.sh af3_job_requests/af3_job_request.json /your/af3_structures/output/path/
    ```
 
-2. Calculate interfaces and TCRbridge scores
+2. Calculate interfaces and TCRbridge score for each TCR-pMHC complex
    ```sh 
    # The script will:
    # 1. Calculate interfaces using AlphaBridge
    # 2. Generate TCRbridge scores for each structure
-   bash scripts/predict_tcrbridge.sh
+   # 3. Save predictions to .csv
+   bash scripts/predict_tcrbridge.sh /your/af3_structures/output/path/ TCRbridge_predictions.csv
    ```
 
-   Output: `tcrbridge_scores.csv` containing TCR IDs and their TCRbridge scores
+   Output: `TCRbridge_predictions.csv` containing TCR IDs and their TCRbridge scores
 
 
 <!-- Citing This Work -->
 ## Citing This Work
-(<a href="https://www.biorxiv.org/content/10.1101/2025.04.28.651095v2" target="_blank">biorxiv</a>).
+BioRxiv link <a href="https://www.biorxiv.org/content/10.1101/2025.04.28.651095v2" target="_blank">here</a>
+
+DOI: https://doi.org/10.1101/2025.04.28.651095
 
 <!-- LICENSE -->
 ## License
