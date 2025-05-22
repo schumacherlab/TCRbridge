@@ -21,6 +21,7 @@ TCRbridge predicts TCR-pMHC reactivity from AlphaFold3 output.
    ```
 
 ### Alphafold3 
+
 #### Option1: Alphafold3 structure predictions using alphafoldserver
 For smaller sets of TCR-pMHC complexes [alphafoldserver.com](https://alphafoldserver.com/) should suffice. The webserver allows for up to 20 protein complex predictions per day.
 #### Option2: Alphafold3 structure predictions using a local installation
@@ -49,6 +50,7 @@ Calculating the TCRbridge score from AlphaFold3 output can be done on any machin
 ## Running
 
 0. Generate the input files for Alphafold3
+   
    Input data requirements:
    - CSV file with columns: `tcr_id`, `full_seq_reconstruct_alpha_aa`, `full_seq_reconstruct_beta_aa`, `epitope_aa`
    - The TCR alpha and beta sequences must be full-length sequences
@@ -58,7 +60,8 @@ Calculating the TCRbridge score from AlphaFold3 output can be done on any machin
    python tcrbridge/make_af3_job_requests.py input_data.csv af3_job_requests/af3_job_request.json
    ```
 
-1. Generate the AF3 structures 
+2. Generate the AF3 structures
+   
    Option 1: Using [alphafoldserver.com](https://alphafoldserver.com/) (recommended for <20 structures)
    - Upload the generated json file to alphafoldserver.com
    - Download and extract the results to your output directory
@@ -69,7 +72,7 @@ Calculating the TCRbridge score from AlphaFold3 output can be done on any machin
    sbatch scripts/predict_structure_with_af3.sh af3_job_requests/af3_job_request.json /your/af3_structures/output/path/
    ```
 
-2. Calculate interfaces and TCRbridge score for each TCR-pMHC complex
+4. Calculate interfaces and TCRbridge score for each TCR-pMHC complex
    ```sh 
    # The script will:
    # 1. Calculate interfaces using AlphaBridge
